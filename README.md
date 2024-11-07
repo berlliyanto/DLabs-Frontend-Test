@@ -5,6 +5,6 @@
 
 # Running on Local Development
 1. Install requires dependencies
-...
-npm install
-...
+```cli
+npm run dev
+```
