@@ -6,5 +6,16 @@
 # Running on Local Development
 1. Install requires dependencies
 ```cli
+npm install
+```
+2. Run development mode
+```cli
 npm run dev
+```
+3. Open Localhost
+
+# Build Project
+1. Run Build
+```cli
+npm run build
 ```
