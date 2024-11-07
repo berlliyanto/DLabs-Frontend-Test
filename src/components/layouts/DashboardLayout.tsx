@@ -49,6 +49,7 @@ import { UserApiInterface } from "@/interfaces/userApiInterface";
 const headers: string[] = ["Name", "Email", "Age", "Status", "Actions"];
 
 const MainLayout = () => {
+  //STATE
   const dispatch = useDispatch();
 
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -64,6 +65,7 @@ const MainLayout = () => {
   const currentPage = useSelector((state: any) => state.user.currentPage);
   const searchNama = useSelector((state: any) => state.user.searchNama);
 
+  //FUNCTION
   const openDialogAdd = () => {
     setIsDialogOpen(true);
     setEditDialogOpen(false);
@@ -129,6 +131,7 @@ const MainLayout = () => {
     }
   };
 
+  //SORTING
   const sortedUsers = [...users].sort((a, b) => {
     if (!sortColumn) return 0;
 
@@ -142,11 +145,15 @@ const MainLayout = () => {
     }
   });
 
+  //FETHCHING API
   const fetchUsers = async () => {
     setIsLoading(true);
     const response = await new UserAction().fetchUsers();
+    console.log(response);
     setUsersAPIM(response);
-    setIsLoading(false);
+    if (response.status !== 200) {
+      setIsLoading(false);
+    }
   };
 
   useEffect(() => {
@@ -312,7 +319,10 @@ const MainLayout = () => {
       <div className="flex justify-between text-xl text-slate-700 font-bold m-auto w-full text-center md:text-left">
         <p>Data From API</p>
       </div>
-      <section id="FromAPI" className="flex flex-wrap mt-6 gap-6">
+      <section
+        id="FromAPI"
+        className="flex flex-wrap mt-6 gap-6 items-center justify-center "
+      >
         {isLoading ? (
           <Fragment>
             <Skeleton />
@@ -326,8 +336,7 @@ const MainLayout = () => {
             <Skeleton />
             <Skeleton />
           </Fragment>
-        ) : (
-          
+        ) : UsersAPIM.length > 0 ? (
           UsersAPIM.map((user: UserApiInterface, index) => {
             return (
               <Card
@@ -338,6 +347,8 @@ const MainLayout = () => {
               />
             );
           })
+        ) : (
+          <p>No Data</p>
         )}
       </section>
     </main>

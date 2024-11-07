@@ -54,7 +54,11 @@ class UserAction {
 
   async fetchUsers() {
     const response = await getUsers();
-    return response.data;
+    if (response.status == 200) {
+      return response.data;
+    } else {
+      return response;
+    }
   }
 }
 
