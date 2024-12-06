@@ -48,6 +48,12 @@ import { UserApiInterface } from "@/interfaces/userApiInterface";
 
 const headers: string[] = ["Name", "Email", "Age", "Status", "Actions"];
 
+// interface FormProps {
+//   name?: string
+//   email?: string
+//   umur?: string
+// }
+
 const MainLayout = () => {
   //STATE
   const dispatch = useDispatch();
@@ -105,9 +111,15 @@ const MainLayout = () => {
   ): void => {
     e.preventDefault();
 
-    const name = e.currentTarget.name.value;
-    const email = e.currentTarget.email.value;
-    const umur = e.currentTarget.umur.value;
+    const name = (
+      e.currentTarget.elements.namedItem("name") as HTMLInputElement
+    ).value;
+    const email = (
+      e.currentTarget.elements.namedItem("email") as HTMLInputElement
+    ).value;
+    const umur = (
+      e.currentTarget.elements.namedItem("umur") as HTMLInputElement
+    ).value;
 
     const formData = new FormData(e.currentTarget);
 
