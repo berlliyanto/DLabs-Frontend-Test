@@ -19,3 +19,6 @@ npm run dev
 ```cli
 npm run build
 ```
+
+# Live Demo
+https://d-labs-frontend-test.vercel.app/
